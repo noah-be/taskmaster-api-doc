@@ -2,6 +2,8 @@
 title: Taskmaster API Documentation
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
+  - shell
+  - python
   - javascript
 
 toc_footers:
@@ -43,174 +45,126 @@ Protected endpoints require a valid token, which can be provided in one of two w
 - **HTTP Cookie**:  
   If the `Authorization` header is missing, the API will also check for a `jwt` cookie.
 
-# Kittens
+# User
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Register A New User
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl -X POST "https://api.tm.noah-frank.de/auth/register" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "user123",
+    "password": "securepassword"
+  }'
 ```
 
 ```javascript
-const kittn = require("kittn");
+const axios = require("axios");
 
-let api = kittn.authorize("meowmeowmeow");
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-| Parameter    | Default | Description                                                                      |
-| ------------ | ------- | -------------------------------------------------------------------------------- |
-| include_cats | false   | If set to true, the result will also include cats.                               |
-| available    | true    | If set to false, the result will include kittens that have already been adopted. |
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+axios.post("https://api.tm.noah-frank.de/auth/register", {
+  username: "user123",
+  password: "securepassword",
+});
 ```
 
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require("kittn");
-
-let api = kittn.authorize("meowmeowmeow");
-let max = api.kittens.get(2);
+response = requests.post("https://api.tm.noah-frank.de/auth/register", json={
+  "username": "user123",
+  "password": "securepassword"
+})
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "message": "User registered successfully",
+  "userId": "603dcd6e1c4a2f2f7c123456",
+  "redirectUrl": "/dashboard"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint registers a new user.  
+It also creates default tasks and logs the user in automatically.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST https://api.tm.noah-frank.de/auth/register`
 
-### URL Parameters
+### Request Body
 
-| Parameter | Description                      |
-| --------- | -------------------------------- |
-| ID        | The ID of the kitten to retrieve |
+| Field    | Type   | Required | Description          |
+| -------- | ------ | -------- | -------------------- |
+| username | string | ✅ Yes   | The desired username |
+| password | string | ✅ Yes   | The desired password |
 
-## Delete a Specific Kitten
+### Responses
 
-```ruby
-require 'kittn'
+- `200 OK` – User registered successfully
+- `400 Bad Request` – Username or password missing
+- `500 Internal Server Error` – Something went wrong on the server
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+---
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Log In A User
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+curl -X POST "https://api.tm.noah-frank.de/auth/login" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "user123",
+    "password": "securepassword"
+  }'
 ```
 
 ```javascript
-const kittn = require("kittn");
+const axios = require("axios");
 
-let api = kittn.authorize("meowmeowmeow");
-let max = api.kittens.delete(2);
+axios.post("https://api.tm.noah-frank.de/auth/login", {
+  username: "user123",
+  password: "securepassword",
+});
+```
+
+```python
+import requests
+
+response = requests.post("https://api.tm.noah-frank.de/auth/login", json={
+  "username": "user123",
+  "password": "securepassword"
+})
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted": ":("
+  "message": "User logged in successfully",
+  "userId": "603dcd6e1c4a2f2f7c123456",
+  "redirectUrl": "/dashboard",
+  "token": "your.jwt.token"
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint logs in a user using username and password.  
+Returns a JWT token and redirect URL.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`POST https://api.tm.noah-frank.de/auth/login`
 
-### URL Parameters
+### Request Body
 
-| Parameter | Description                    |
-| --------- | ------------------------------ |
-| ID        | The ID of the kitten to delete |
+| Field    | Type   | Required | Description         |
+| -------- | ------ | -------- | ------------------- |
+| username | string | ✅ Yes   | The user's username |
+| password | string | ✅ Yes   | The user's password |
+
+### Responses
+
+- `200 OK` – Login successful
+- `400 Bad Request` – Username or password missing
+- `401 Unauthorized` – Invalid credentials
+- `500 Internal Server Error` – Something went wrong on the server
