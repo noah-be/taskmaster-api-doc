@@ -451,7 +451,7 @@ It also creates default tasks and logs the user in automatically.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>200 OK</td>
+<td>200</td>
 <td>User registered successfully</td>
 </tr>
 <tr>
@@ -526,7 +526,7 @@ Returns a JWT token and redirect URL.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>200 OK</td>
+<td>200</td>
 <td>Login successful</td>
 </tr>
 <tr>
@@ -579,6 +579,22 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://api.tm.noah-frank.de/tasks</code></p>
+<h3 id='responses-3'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Task list returned</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error</td>
+</tr>
+</tbody></table>
 <h2 id='get-a-task-by-id'>Get a Task by ID</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
@@ -611,6 +627,26 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</code></p>
+<h3 id='responses-4'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Task returned</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Task not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error</td>
+</tr>
+</tbody></table>
 <h2 id='create-a-new-task'>Create a New Task</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
@@ -706,6 +742,30 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 <td>Automatically set from the authenticated user</td>
 </tr>
 </tbody></table>
+<h3 id='responses-5'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Task successfully created</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Title missing or invalid priority</td>
+</tr>
+<tr>
+<td>400</td>
+<td>User identification is missing</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error</td>
+</tr>
+</tbody></table>
 <h2 id='update-a-task'>Update a Task</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
@@ -736,6 +796,26 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 <span class="n">updated_task</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div><h3 id='http-request-6'>HTTP Request</h3>
 <p><code>PUT https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</code></p>
+<h3 id='responses-6'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Task updated</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Task not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error</td>
+</tr>
+</tbody></table>
 <h2 id='toggle-task-completion'>Toggle Task Completion</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;/toggle</span><span class="dl">"</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span>
@@ -767,6 +847,30 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-7'>HTTP Request</h3>
 <p><code>PATCH https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;/toggle</code></p>
+<h3 id='responses-7'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Task toggled successfully</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Unauthorized access to this task</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Task not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error</td>
+</tr>
+</tbody></table>
 <h2 id='delete-a-task'>Delete a Task</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
@@ -795,6 +899,26 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 </span></code></pre></div><h3 id='http-request-8'>HTTP Request</h3>
 <p><code>DELETE https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</code>
 ```</p>
+<h3 id='responses-8'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Task successfully deleted</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Task not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
