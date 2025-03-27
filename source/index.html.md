@@ -104,7 +104,7 @@ It also creates default tasks and logs the user in automatically.
 
 | Status | Description                   |
 |--------|-------------------------------|
-| 200 OK | User registered successfully  |
+| 200    | User registered successfully  |
 | 400    | Username or password missing  |
 | 500    | Internal server error         |
 
@@ -166,7 +166,7 @@ Returns a JWT token and redirect URL.
 
 | Status | Description                   |
 |--------|-------------------------------|
-| 200 OK | Login successful              |
+| 200    | Login successful              |
 | 400    | Username or password missing  |
 | 401    | Invalid credentials           |
 | 500    | Internal server error         |
@@ -189,7 +189,6 @@ axios.get("https://api.tm.noah-frank.de/tasks", {
   console.log(response.data);
 });
 ```
-
 
 ```shell
 curl "https://api.tm.noah-frank.de/tasks" \
@@ -224,6 +223,13 @@ tasks = response.json()
 ### HTTP Request
 
 `GET https://api.tm.noah-frank.de/tasks`
+
+### Responses
+
+| Status | Description               |
+|--------|---------------------------|
+| 200    | Task list returned        |
+| 500    | Internal server error     |
 
 ## Get a Task by ID
 
@@ -271,6 +277,14 @@ task = response.json()
 
 `GET https://api.tm.noah-frank.de/tasks/<taskId>`
 
+### Responses
+
+| Status | Description           |
+|--------|-----------------------|
+| 200    | Task returned         |
+| 404    | Task not found        |
+| 500    | Internal server error |
+
 ## Create a New Task
 
 ```javascript
@@ -289,7 +303,6 @@ axios.post("https://api.tm.noah-frank.de/tasks", {
   console.log(response.data);
 });
 ```
-
 
 ```shell
 curl -X POST "https://api.tm.noah-frank.de/tasks" \
@@ -346,6 +359,15 @@ task = response.json()
 | priority    | string   | ✅ Yes   | One of: `"High"`, `"Medium"`, `"Low"` (default: `"Low"`) |
 | user        | ObjectId | ⚠️ No    | Automatically set from the authenticated user            |
 
+### Responses
+
+| Status | Description                        |
+|--------|------------------------------------|
+| 201    | Task successfully created          |
+| 400    | Title missing or invalid priority  |
+| 400    | User identification is missing     |
+| 500    | Internal server error              |
+
 ## Update a Task
 
 ```javascript
@@ -362,7 +384,6 @@ axios.put("https://api.tm.noah-frank.de/tasks/<taskId>", {
   console.log(response.data);
 });
 ```
-
 
 ```shell
 curl -X PUT "https://api.tm.noah-frank.de/tasks/<taskId>" \
@@ -390,6 +411,14 @@ updated_task = response.json()
 
 `PUT https://api.tm.noah-frank.de/tasks/<taskId>`
 
+### Responses
+
+| Status | Description           |
+|--------|-----------------------|
+| 200    | Task updated          |
+| 404    | Task not found        |
+| 500    | Internal server error |
+
 ## Toggle Task Completion
 
 ```javascript
@@ -403,7 +432,6 @@ axios.patch("https://api.tm.noah-frank.de/tasks/<taskId>/toggle", {}, {
   console.log(response.data);
 });
 ```
-
 
 ```shell
 curl -X PATCH "https://api.tm.noah-frank.de/tasks/<taskId>/toggle" \
@@ -436,6 +464,15 @@ result = response.json()
 
 `PATCH https://api.tm.noah-frank.de/tasks/<taskId>/toggle`
 
+### Responses
+
+| Status | Description                         |
+|--------|-------------------------------------|
+| 200    | Task toggled successfully           |
+| 403    | Unauthorized access to this task    |
+| 404    | Task not found                      |
+| 500    | Internal server error               |
+
 ## Delete a Task
 
 ```javascript
@@ -449,7 +486,6 @@ axios.delete("https://api.tm.noah-frank.de/tasks/<taskId>", {
   console.log(response.data);
 });
 ```
-
 
 ```shell
 curl -X DELETE "https://api.tm.noah-frank.de/tasks/<taskId>" \
@@ -478,3 +514,11 @@ result = response.json()
 
 `DELETE https://api.tm.noah-frank.de/tasks/<taskId>`
 ```
+
+### Responses
+
+| Status | Description               |
+|--------|---------------------------|
+| 200    | Task successfully deleted |
+| 404    | Task not found            |
+| 500    | Internal server error     |
