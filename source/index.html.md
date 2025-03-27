@@ -106,8 +106,6 @@ It also creates default tasks and logs the user in automatically.
 - `400 Bad Request` – Username or password missing
 - `500 Internal Server Error` – Something went wrong on the server
 
----
-
 ## Log In A User
 
 ```shell
@@ -168,3 +166,311 @@ Returns a JWT token and redirect URL.
 - `400 Bad Request` – Username or password missing
 - `401 Unauthorized` – Invalid credentials
 - `500 Internal Server Error` – Something went wrong on the server
+
+# Tasks
+
+All task-related endpoints require authentication via JWT.  
+Use the `Authorization: Bearer <token>` header or a valid `jwt` cookie.
+
+## Get All Tasks
+
+```javascript
+const axios = require("axios");
+
+axios.get("https://api.tm.noah-frank.de/api/tasks", {
+  headers: {
+    Authorization: "Bearer your.jwt.token"
+  }
+}).then(response => {
+  console.log(response.data);
+});
+```
+
+
+```shell
+curl "https://api.tm.noah-frank.de/api/tasks" \
+  -H "Authorization: Bearer your.jwt.token"
+```
+
+```python
+import requests
+
+response = requests.get("https://api.tm.noah-frank.de/api/tasks", headers={
+    "Authorization": "Bearer your.jwt.token"
+})
+tasks = response.json()
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "_id": "123",
+    "title": "Example Task",
+    "description": "This is a task",
+    "dueDate": "2024-12-31T23:59:59.999Z",
+    "priority": "High",
+    "completed": false,
+    "user": "456"
+  }
+]
+```
+
+### HTTP Request
+
+`GET https://api.tm.noah-frank.de/api/tasks`
+
+## Get a Task by ID
+
+```javascript
+const axios = require("axios");
+
+axios.get("https://api.tm.noah-frank.de/api/tasks/<taskId>", {
+  headers: {
+    Authorization: "Bearer your.jwt.token"
+  }
+}).then(response => {
+  console.log(response.data);
+});
+```
+
+```shell
+curl "https://api.tm.noah-frank.de/api/tasks/<taskId>" \
+  -H "Authorization: Bearer your.jwt.token"
+```
+
+```python
+import requests
+
+response = requests.get("https://api.tm.noah-frank.de/api/tasks/<taskId>", headers={
+    "Authorization": "Bearer your.jwt.token"
+})
+task = response.json()
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "_id": "123",
+  "title": "Example Task",
+  "description": "This is a task",
+  "dueDate": "2024-12-31T23:59:59.999Z",
+  "priority": "High",
+  "completed": false,
+  "user": "456"
+}
+```
+
+### HTTP Request
+
+`GET https://api.tm.noah-frank.de/api/tasks/<taskId>`
+
+## Create a New Task
+
+```javascript
+const axios = require("axios");
+
+axios.post("https://api.tm.noah-frank.de/api/tasks", {
+  title: "New Task",
+  description: "Optional text",
+  dueDate: "2024-12-31",
+  priority: "High"
+}, {
+  headers: {
+    Authorization: "Bearer your.jwt.token"
+  }
+}).then(response => {
+  console.log(response.data);
+});
+```
+
+
+```shell
+curl -X POST "https://api.tm.noah-frank.de/api/tasks" \
+  -H "Authorization: Bearer your.jwt.token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "New Task",
+    "description": "Optional text",
+    "dueDate": "2024-12-31",
+    "priority": "High"
+  }'
+```
+
+```python
+import requests
+
+response = requests.post("https://api.tm.noah-frank.de/api/tasks", json={
+    "title": "New Task",
+    "description": "Optional text",
+    "dueDate": "2024-12-31",
+    "priority": "High"
+}, headers={
+    "Authorization": "Bearer your.jwt.token"
+})
+task = response.json()
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "_id": "123",
+  "title": "New Task",
+  "description": "Optional text",
+  "dueDate": "2024-12-31T00:00:00.000Z",
+  "priority": "High",
+  "completed": false,
+  "user": "456"
+}
+```
+
+### HTTP Request
+
+`POST https://api.tm.noah-frank.de/api/tasks`
+
+### Request Body
+
+| Field       | Type     | Required | Description                                              |
+| ----------- | -------- | -------- | -------------------------------------------------------- |
+| title       | string   | ✅ Yes   | Title of the task                                        |
+| description | string   | No       | Description of the task                                  |
+| dueDate     | ISO date | No       | When the task is due                                     |
+| completed   | boolean  | No       | Whether the task is completed (default: `false`)         |
+| priority    | string   | ✅ Yes   | One of: `"High"`, `"Medium"`, `"Low"` (default: `"Low"`) |
+| user        | ObjectId | ⚠️ No    | Automatically set from the authenticated user            |
+
+## Update a Task
+
+```javascript
+const axios = require("axios");
+
+axios.put("https://api.tm.noah-frank.de/api/tasks/<taskId>", {
+  title: "Updated Task",
+  completed: true
+}, {
+  headers: {
+    Authorization: "Bearer your.jwt.token"
+  }
+}).then(response => {
+  console.log(response.data);
+});
+```
+
+
+```shell
+curl -X PUT "https://api.tm.noah-frank.de/api/tasks/<taskId>" \
+  -H "Authorization: Bearer your.jwt.token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Updated Task",
+    "completed": true
+  }'
+```
+
+```python
+import requests
+
+response = requests.put("https://api.tm.noah-frank.de/api/tasks/<taskId>", json={
+    "title": "Updated Task",
+    "completed": True
+}, headers={
+    "Authorization": "Bearer your.jwt.token"
+})
+updated_task = response.json()
+```
+
+### HTTP Request
+
+`PUT https://api.tm.noah-frank.de/api/tasks/<taskId>`
+
+## Toggle Task Completion
+
+```javascript
+const axios = require("axios");
+
+axios.patch("https://api.tm.noah-frank.de/api/tasks/<taskId>/toggle", {}, {
+  headers: {
+    Authorization: "Bearer your.jwt.token"
+  }
+}).then(response => {
+  console.log(response.data);
+});
+```
+
+
+```shell
+curl -X PATCH "https://api.tm.noah-frank.de/api/tasks/<taskId>/toggle" \
+  -H "Authorization: Bearer your.jwt.token"
+```
+
+```python
+import requests
+
+response = requests.patch("https://api.tm.noah-frank.de/api/tasks/<taskId>/toggle", headers={
+    "Authorization": "Bearer your.jwt.token"
+})
+result = response.json()
+```
+
+> Returns:
+
+```json
+{
+  "message": "Task toggled successfully",
+  "task": {
+    "_id": "123",
+    "completed": true,
+    ...
+  }
+}
+```
+
+### HTTP Request
+
+`PATCH https://api.tm.noah-frank.de/api/tasks/<taskId>/toggle`
+
+## Delete a Task
+
+```javascript
+const axios = require("axios");
+
+axios.delete("https://api.tm.noah-frank.de/api/tasks/<taskId>", {
+  headers: {
+    Authorization: "Bearer your.jwt.token"
+  }
+}).then(response => {
+  console.log(response.data);
+});
+```
+
+
+```shell
+curl -X DELETE "https://api.tm.noah-frank.de/api/tasks/<taskId>" \
+  -H "Authorization: Bearer your.jwt.token"
+```
+
+```python
+import requests
+
+response = requests.delete("https://api.tm.noah-frank.de/api/tasks/<taskId>", headers={
+    "Authorization": "Bearer your.jwt.token"
+})
+result = response.json()
+```
+
+> Returns:
+
+```json
+{
+  "message": "Task successfully deleted",
+  "taskId": "123"
+}
+```
+
+### HTTP Request
+
+`DELETE https://api.tm.noah-frank.de/api/tasks/<taskId>`
+```
