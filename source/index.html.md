@@ -28,43 +28,20 @@ Base URL: `https://api.tm.noah-frank.de/`
 
 # Authentication
 
-> To authorize, use this code:
+> ℹ️ **Header vs. Cookie – Which one should I use?**  
+> Using the `Authorization` header is recommended because it's a standard practice in REST APIs, works reliably across all clients (browser, mobile, CLI), and avoids issues with cookies like SameSite restrictions or automatic sending in cross-site requests.  
+> Cookies are useful for browser-based sessions, especially when using `HttpOnly` and `Secure` flags to protect the token.
 
-```ruby
-require 'kittn'
+The Taskmaster API uses **JWT (JSON Web Tokens)** for authentication.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Protected endpoints require a valid token, which can be provided in one of two ways:
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require("kittn");
-
-let api = kittn.authorize("meowmeowmeow");
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+- **HTTP Header** (recommended):
+  ```
+  Authorization: Bearer your.jwt.token
+  ```
+- **HTTP Cookie**:  
+  If the `Authorization` header is missing, the API will also check for a `jwt` cookie.
 
 # Kittens
 
