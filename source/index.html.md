@@ -102,9 +102,11 @@ It also creates default tasks and logs the user in automatically.
 
 ### Responses
 
-- `200 OK` – User registered successfully
-- `400 Bad Request` – Username or password missing
-- `500 Internal Server Error` – Something went wrong on the server
+| Status | Description                   |
+|--------|-------------------------------|
+| 200 OK | User registered successfully  |
+| 400    | Username or password missing  |
+| 500    | Internal server error         |
 
 ## Log In A User
 
@@ -162,10 +164,12 @@ Returns a JWT token and redirect URL.
 
 ### Responses
 
-- `200 OK` – Login successful
-- `400 Bad Request` – Username or password missing
-- `401 Unauthorized` – Invalid credentials
-- `500 Internal Server Error` – Something went wrong on the server
+| Status | Description                   |
+|--------|-------------------------------|
+| 200 OK | Login successful              |
+| 400    | Username or password missing  |
+| 401    | Invalid credentials           |
+| 500    | Internal server error         |
 
 # Tasks
 
