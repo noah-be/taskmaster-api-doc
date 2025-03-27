@@ -177,7 +177,7 @@ Use the `Authorization: Bearer <token>` header or a valid `jwt` cookie.
 ```javascript
 const axios = require("axios");
 
-axios.get("https://api.tm.noah-frank.de/api/tasks", {
+axios.get("https://api.tm.noah-frank.de/tasks", {
   headers: {
     Authorization: "Bearer your.jwt.token"
   }
@@ -188,14 +188,14 @@ axios.get("https://api.tm.noah-frank.de/api/tasks", {
 
 
 ```shell
-curl "https://api.tm.noah-frank.de/api/tasks" \
+curl "https://api.tm.noah-frank.de/tasks" \
   -H "Authorization: Bearer your.jwt.token"
 ```
 
 ```python
 import requests
 
-response = requests.get("https://api.tm.noah-frank.de/api/tasks", headers={
+response = requests.get("https://api.tm.noah-frank.de/tasks", headers={
     "Authorization": "Bearer your.jwt.token"
 })
 tasks = response.json()
@@ -219,14 +219,14 @@ tasks = response.json()
 
 ### HTTP Request
 
-`GET https://api.tm.noah-frank.de/api/tasks`
+`GET https://api.tm.noah-frank.de/tasks`
 
 ## Get a Task by ID
 
 ```javascript
 const axios = require("axios");
 
-axios.get("https://api.tm.noah-frank.de/api/tasks/<taskId>", {
+axios.get("https://api.tm.noah-frank.de/tasks/<taskId>", {
   headers: {
     Authorization: "Bearer your.jwt.token"
   }
@@ -236,14 +236,14 @@ axios.get("https://api.tm.noah-frank.de/api/tasks/<taskId>", {
 ```
 
 ```shell
-curl "https://api.tm.noah-frank.de/api/tasks/<taskId>" \
+curl "https://api.tm.noah-frank.de/tasks/<taskId>" \
   -H "Authorization: Bearer your.jwt.token"
 ```
 
 ```python
 import requests
 
-response = requests.get("https://api.tm.noah-frank.de/api/tasks/<taskId>", headers={
+response = requests.get("https://api.tm.noah-frank.de/tasks/<taskId>", headers={
     "Authorization": "Bearer your.jwt.token"
 })
 task = response.json()
@@ -265,14 +265,14 @@ task = response.json()
 
 ### HTTP Request
 
-`GET https://api.tm.noah-frank.de/api/tasks/<taskId>`
+`GET https://api.tm.noah-frank.de/tasks/<taskId>`
 
 ## Create a New Task
 
 ```javascript
 const axios = require("axios");
 
-axios.post("https://api.tm.noah-frank.de/api/tasks", {
+axios.post("https://api.tm.noah-frank.de/tasks", {
   title: "New Task",
   description: "Optional text",
   dueDate: "2024-12-31",
@@ -288,7 +288,7 @@ axios.post("https://api.tm.noah-frank.de/api/tasks", {
 
 
 ```shell
-curl -X POST "https://api.tm.noah-frank.de/api/tasks" \
+curl -X POST "https://api.tm.noah-frank.de/tasks" \
   -H "Authorization: Bearer your.jwt.token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -302,7 +302,7 @@ curl -X POST "https://api.tm.noah-frank.de/api/tasks" \
 ```python
 import requests
 
-response = requests.post("https://api.tm.noah-frank.de/api/tasks", json={
+response = requests.post("https://api.tm.noah-frank.de/tasks", json={
     "title": "New Task",
     "description": "Optional text",
     "dueDate": "2024-12-31",
@@ -329,7 +329,7 @@ task = response.json()
 
 ### HTTP Request
 
-`POST https://api.tm.noah-frank.de/api/tasks`
+`POST https://api.tm.noah-frank.de/tasks`
 
 ### Request Body
 
@@ -347,7 +347,7 @@ task = response.json()
 ```javascript
 const axios = require("axios");
 
-axios.put("https://api.tm.noah-frank.de/api/tasks/<taskId>", {
+axios.put("https://api.tm.noah-frank.de/tasks/<taskId>", {
   title: "Updated Task",
   completed: true
 }, {
@@ -361,7 +361,7 @@ axios.put("https://api.tm.noah-frank.de/api/tasks/<taskId>", {
 
 
 ```shell
-curl -X PUT "https://api.tm.noah-frank.de/api/tasks/<taskId>" \
+curl -X PUT "https://api.tm.noah-frank.de/tasks/<taskId>" \
   -H "Authorization: Bearer your.jwt.token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -373,7 +373,7 @@ curl -X PUT "https://api.tm.noah-frank.de/api/tasks/<taskId>" \
 ```python
 import requests
 
-response = requests.put("https://api.tm.noah-frank.de/api/tasks/<taskId>", json={
+response = requests.put("https://api.tm.noah-frank.de/tasks/<taskId>", json={
     "title": "Updated Task",
     "completed": True
 }, headers={
@@ -384,14 +384,14 @@ updated_task = response.json()
 
 ### HTTP Request
 
-`PUT https://api.tm.noah-frank.de/api/tasks/<taskId>`
+`PUT https://api.tm.noah-frank.de/tasks/<taskId>`
 
 ## Toggle Task Completion
 
 ```javascript
 const axios = require("axios");
 
-axios.patch("https://api.tm.noah-frank.de/api/tasks/<taskId>/toggle", {}, {
+axios.patch("https://api.tm.noah-frank.de/tasks/<taskId>/toggle", {}, {
   headers: {
     Authorization: "Bearer your.jwt.token"
   }
@@ -402,14 +402,14 @@ axios.patch("https://api.tm.noah-frank.de/api/tasks/<taskId>/toggle", {}, {
 
 
 ```shell
-curl -X PATCH "https://api.tm.noah-frank.de/api/tasks/<taskId>/toggle" \
+curl -X PATCH "https://api.tm.noah-frank.de/tasks/<taskId>/toggle" \
   -H "Authorization: Bearer your.jwt.token"
 ```
 
 ```python
 import requests
 
-response = requests.patch("https://api.tm.noah-frank.de/api/tasks/<taskId>/toggle", headers={
+response = requests.patch("https://api.tm.noah-frank.de/tasks/<taskId>/toggle", headers={
     "Authorization": "Bearer your.jwt.token"
 })
 result = response.json()
@@ -430,14 +430,14 @@ result = response.json()
 
 ### HTTP Request
 
-`PATCH https://api.tm.noah-frank.de/api/tasks/<taskId>/toggle`
+`PATCH https://api.tm.noah-frank.de/tasks/<taskId>/toggle`
 
 ## Delete a Task
 
 ```javascript
 const axios = require("axios");
 
-axios.delete("https://api.tm.noah-frank.de/api/tasks/<taskId>", {
+axios.delete("https://api.tm.noah-frank.de/tasks/<taskId>", {
   headers: {
     Authorization: "Bearer your.jwt.token"
   }
@@ -448,14 +448,14 @@ axios.delete("https://api.tm.noah-frank.de/api/tasks/<taskId>", {
 
 
 ```shell
-curl -X DELETE "https://api.tm.noah-frank.de/api/tasks/<taskId>" \
+curl -X DELETE "https://api.tm.noah-frank.de/tasks/<taskId>" \
   -H "Authorization: Bearer your.jwt.token"
 ```
 
 ```python
 import requests
 
-response = requests.delete("https://api.tm.noah-frank.de/api/tasks/<taskId>", headers={
+response = requests.delete("https://api.tm.noah-frank.de/tasks/<taskId>", headers={
     "Authorization": "Bearer your.jwt.token"
 })
 result = response.json()
@@ -472,5 +472,5 @@ result = response.json()
 
 ### HTTP Request
 
-`DELETE https://api.tm.noah-frank.de/api/tasks/<taskId>`
+`DELETE https://api.tm.noah-frank.de/tasks/<taskId>`
 ```
