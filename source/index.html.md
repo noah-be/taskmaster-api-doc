@@ -26,7 +26,7 @@ meta:
 Welcome to the Taskmaster REST API. This API allows you to manage tasks and handle user authentication.
 
 All responses are in JSON format.  
-Base URL: `https://api.tm.noah-frank.de/`
+Base URL: `https://tm.noah-frank.de/api/`
 
 # Authentication
 
@@ -50,7 +50,7 @@ Protected endpoints require a valid token, which can be provided in one of two w
 ## Register A New User
 
 ```shell
-curl -X POST "https://api.tm.noah-frank.de/auth/register" \
+curl -X POST "https://tm.noah-frank.de/api/auth/register" \
   -H "Content-Type: application/json" \
   -d '{
     "username": "user123",
@@ -61,7 +61,7 @@ curl -X POST "https://api.tm.noah-frank.de/auth/register" \
 ```javascript
 const axios = require("axios");
 
-axios.post("https://api.tm.noah-frank.de/auth/register", {
+axios.post("https://tm.noah-frank.de/api/auth/register", {
   username: "user123",
   password: "securepassword",
 });
@@ -70,7 +70,7 @@ axios.post("https://api.tm.noah-frank.de/auth/register", {
 ```python
 import requests
 
-response = requests.post("https://api.tm.noah-frank.de/auth/register", json={
+response = requests.post("https://tm.noah-frank.de/api/auth/register", json={
   "username": "user123",
   "password": "securepassword"
 })
@@ -91,7 +91,7 @@ It also creates default tasks and logs the user in automatically.
 
 ### HTTP Request
 
-`POST https://api.tm.noah-frank.de/auth/register`
+`POST https://tm.noah-frank.de/api/auth/register`
 
 ### Request Body
 
@@ -102,16 +102,16 @@ It also creates default tasks and logs the user in automatically.
 
 ### Responses
 
-| Status | Description                   |
-|--------|-------------------------------|
-| 200    | User registered successfully  |
-| 400    | Username or password missing  |
-| 500    | Internal server error         |
+| Status | Description                  |
+| ------ | ---------------------------- |
+| 200    | User registered successfully |
+| 400    | Username or password missing |
+| 500    | Internal server error        |
 
 ## Log In A User
 
 ```shell
-curl -X POST "https://api.tm.noah-frank.de/auth/login" \
+curl -X POST "https://tm.noah-frank.de/api/auth/login" \
   -H "Content-Type: application/json" \
   -d '{
     "username": "user123",
@@ -122,7 +122,7 @@ curl -X POST "https://api.tm.noah-frank.de/auth/login" \
 ```javascript
 const axios = require("axios");
 
-axios.post("https://api.tm.noah-frank.de/auth/login", {
+axios.post("https://tm.noah-frank.de/api/auth/login", {
   username: "user123",
   password: "securepassword",
 });
@@ -131,7 +131,7 @@ axios.post("https://api.tm.noah-frank.de/auth/login", {
 ```python
 import requests
 
-response = requests.post("https://api.tm.noah-frank.de/auth/login", json={
+response = requests.post("https://tm.noah-frank.de/api/auth/login", json={
   "username": "user123",
   "password": "securepassword"
 })
@@ -153,7 +153,7 @@ Returns a JWT token and redirect URL.
 
 ### HTTP Request
 
-`POST https://api.tm.noah-frank.de/auth/login`
+`POST https://tm.noah-frank.de/api/auth/login`
 
 ### Request Body
 
@@ -164,12 +164,12 @@ Returns a JWT token and redirect URL.
 
 ### Responses
 
-| Status | Description                   |
-|--------|-------------------------------|
-| 200    | Login successful              |
-| 400    | Username or password missing  |
-| 401    | Invalid credentials           |
-| 500    | Internal server error         |
+| Status | Description                  |
+| ------ | ---------------------------- |
+| 200    | Login successful             |
+| 400    | Username or password missing |
+| 401    | Invalid credentials          |
+| 500    | Internal server error        |
 
 # Tasks
 
@@ -181,24 +181,26 @@ Use the `Authorization: Bearer <token>` header or a valid `jwt` cookie.
 ```javascript
 const axios = require("axios");
 
-axios.get("https://api.tm.noah-frank.de/tasks", {
-  headers: {
-    Authorization: "Bearer your.jwt.token"
-  }
-}).then(response => {
-  console.log(response.data);
-});
+axios
+  .get("https://tm.noah-frank.de/api/tasks", {
+    headers: {
+      Authorization: "Bearer your.jwt.token",
+    },
+  })
+  .then((response) => {
+    console.log(response.data);
+  });
 ```
 
 ```shell
-curl "https://api.tm.noah-frank.de/tasks" \
+curl "https://tm.noah-frank.de/api/tasks" \
   -H "Authorization: Bearer your.jwt.token"
 ```
 
 ```python
 import requests
 
-response = requests.get("https://api.tm.noah-frank.de/tasks", headers={
+response = requests.get("https://tm.noah-frank.de/api/tasks", headers={
     "Authorization": "Bearer your.jwt.token"
 })
 tasks = response.json()
@@ -222,38 +224,40 @@ tasks = response.json()
 
 ### HTTP Request
 
-`GET https://api.tm.noah-frank.de/tasks`
+`GET https://tm.noah-frank.de/api/tasks`
 
 ### Responses
 
-| Status | Description               |
-|--------|---------------------------|
-| 200    | Task list returned        |
-| 500    | Internal server error     |
+| Status | Description           |
+| ------ | --------------------- |
+| 200    | Task list returned    |
+| 500    | Internal server error |
 
 ## Get a Task by ID
 
 ```javascript
 const axios = require("axios");
 
-axios.get("https://api.tm.noah-frank.de/tasks/<taskId>", {
-  headers: {
-    Authorization: "Bearer your.jwt.token"
-  }
-}).then(response => {
-  console.log(response.data);
-});
+axios
+  .get("https://tm.noah-frank.de/api/tasks/<taskId>", {
+    headers: {
+      Authorization: "Bearer your.jwt.token",
+    },
+  })
+  .then((response) => {
+    console.log(response.data);
+  });
 ```
 
 ```shell
-curl "https://api.tm.noah-frank.de/tasks/<taskId>" \
+curl "https://tm.noah-frank.de/api/tasks/<taskId>" \
   -H "Authorization: Bearer your.jwt.token"
 ```
 
 ```python
 import requests
 
-response = requests.get("https://api.tm.noah-frank.de/tasks/<taskId>", headers={
+response = requests.get("https://tm.noah-frank.de/api/tasks/<taskId>", headers={
     "Authorization": "Bearer your.jwt.token"
 })
 task = response.json()
@@ -275,12 +279,12 @@ task = response.json()
 
 ### HTTP Request
 
-`GET https://api.tm.noah-frank.de/tasks/<taskId>`
+`GET https://tm.noah-frank.de/api/tasks/<taskId>`
 
 ### Responses
 
 | Status | Description           |
-|--------|-----------------------|
+| ------ | --------------------- |
 | 200    | Task returned         |
 | 404    | Task not found        |
 | 500    | Internal server error |
@@ -290,22 +294,28 @@ task = response.json()
 ```javascript
 const axios = require("axios");
 
-axios.post("https://api.tm.noah-frank.de/tasks", {
-  title: "New Task",
-  description: "Optional text",
-  dueDate: "2024-12-31",
-  priority: "High"
-}, {
-  headers: {
-    Authorization: "Bearer your.jwt.token"
-  }
-}).then(response => {
-  console.log(response.data);
-});
+axios
+  .post(
+    "https://tm.noah-frank.de/api/tasks",
+    {
+      title: "New Task",
+      description: "Optional text",
+      dueDate: "2024-12-31",
+      priority: "High",
+    },
+    {
+      headers: {
+        Authorization: "Bearer your.jwt.token",
+      },
+    }
+  )
+  .then((response) => {
+    console.log(response.data);
+  });
 ```
 
 ```shell
-curl -X POST "https://api.tm.noah-frank.de/tasks" \
+curl -X POST "https://tm.noah-frank.de/api/tasks" \
   -H "Authorization: Bearer your.jwt.token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -319,7 +329,7 @@ curl -X POST "https://api.tm.noah-frank.de/tasks" \
 ```python
 import requests
 
-response = requests.post("https://api.tm.noah-frank.de/tasks", json={
+response = requests.post("https://tm.noah-frank.de/api/tasks", json={
     "title": "New Task",
     "description": "Optional text",
     "dueDate": "2024-12-31",
@@ -346,7 +356,7 @@ task = response.json()
 
 ### HTTP Request
 
-`POST https://api.tm.noah-frank.de/tasks`
+`POST https://tm.noah-frank.de/api/tasks`
 
 ### Request Body
 
@@ -361,32 +371,38 @@ task = response.json()
 
 ### Responses
 
-| Status | Description                        |
-|--------|------------------------------------|
-| 201    | Task successfully created          |
-| 400    | Title missing or invalid priority  |
-| 400    | User identification is missing     |
-| 500    | Internal server error              |
+| Status | Description                       |
+| ------ | --------------------------------- |
+| 201    | Task successfully created         |
+| 400    | Title missing or invalid priority |
+| 400    | User identification is missing    |
+| 500    | Internal server error             |
 
 ## Update a Task
 
 ```javascript
 const axios = require("axios");
 
-axios.put("https://api.tm.noah-frank.de/tasks/<taskId>", {
-  title: "Updated Task",
-  completed: true
-}, {
-  headers: {
-    Authorization: "Bearer your.jwt.token"
-  }
-}).then(response => {
-  console.log(response.data);
-});
+axios
+  .put(
+    "https://tm.noah-frank.de/api/tasks/<taskId>",
+    {
+      title: "Updated Task",
+      completed: true,
+    },
+    {
+      headers: {
+        Authorization: "Bearer your.jwt.token",
+      },
+    }
+  )
+  .then((response) => {
+    console.log(response.data);
+  });
 ```
 
 ```shell
-curl -X PUT "https://api.tm.noah-frank.de/tasks/<taskId>" \
+curl -X PUT "https://tm.noah-frank.de/api/tasks/<taskId>" \
   -H "Authorization: Bearer your.jwt.token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -398,7 +414,7 @@ curl -X PUT "https://api.tm.noah-frank.de/tasks/<taskId>" \
 ```python
 import requests
 
-response = requests.put("https://api.tm.noah-frank.de/tasks/<taskId>", json={
+response = requests.put("https://tm.noah-frank.de/api/tasks/<taskId>", json={
     "title": "Updated Task",
     "completed": True
 }, headers={
@@ -409,12 +425,12 @@ updated_task = response.json()
 
 ### HTTP Request
 
-`PUT https://api.tm.noah-frank.de/tasks/<taskId>`
+`PUT https://tm.noah-frank.de/api/tasks/<taskId>`
 
 ### Responses
 
 | Status | Description           |
-|--------|-----------------------|
+| ------ | --------------------- |
 | 200    | Task updated          |
 | 404    | Task not found        |
 | 500    | Internal server error |
@@ -424,24 +440,30 @@ updated_task = response.json()
 ```javascript
 const axios = require("axios");
 
-axios.patch("https://api.tm.noah-frank.de/tasks/<taskId>/toggle", {}, {
-  headers: {
-    Authorization: "Bearer your.jwt.token"
-  }
-}).then(response => {
-  console.log(response.data);
-});
+axios
+  .patch(
+    "https://tm.noah-frank.de/api/tasks/<taskId>/toggle",
+    {},
+    {
+      headers: {
+        Authorization: "Bearer your.jwt.token",
+      },
+    }
+  )
+  .then((response) => {
+    console.log(response.data);
+  });
 ```
 
 ```shell
-curl -X PATCH "https://api.tm.noah-frank.de/tasks/<taskId>/toggle" \
+curl -X PATCH "https://tm.noah-frank.de/api/tasks/<taskId>/toggle" \
   -H "Authorization: Bearer your.jwt.token"
 ```
 
 ```python
 import requests
 
-response = requests.patch("https://api.tm.noah-frank.de/tasks/<taskId>/toggle", headers={
+response = requests.patch("https://tm.noah-frank.de/api/tasks/<taskId>/toggle", headers={
     "Authorization": "Bearer your.jwt.token"
 })
 result = response.json()
@@ -462,40 +484,42 @@ result = response.json()
 
 ### HTTP Request
 
-`PATCH https://api.tm.noah-frank.de/tasks/<taskId>/toggle`
+`PATCH https://tm.noah-frank.de/api/tasks/<taskId>/toggle`
 
 ### Responses
 
-| Status | Description                         |
-|--------|-------------------------------------|
-| 200    | Task toggled successfully           |
-| 403    | Unauthorized access to this task    |
-| 404    | Task not found                      |
-| 500    | Internal server error               |
+| Status | Description                      |
+| ------ | -------------------------------- |
+| 200    | Task toggled successfully        |
+| 403    | Unauthorized access to this task |
+| 404    | Task not found                   |
+| 500    | Internal server error            |
 
 ## Delete a Task
 
 ```javascript
 const axios = require("axios");
 
-axios.delete("https://api.tm.noah-frank.de/tasks/<taskId>", {
-  headers: {
-    Authorization: "Bearer your.jwt.token"
-  }
-}).then(response => {
-  console.log(response.data);
-});
+axios
+  .delete("https://tm.noah-frank.de/api/tasks/<taskId>", {
+    headers: {
+      Authorization: "Bearer your.jwt.token",
+    },
+  })
+  .then((response) => {
+    console.log(response.data);
+  });
 ```
 
 ```shell
-curl -X DELETE "https://api.tm.noah-frank.de/tasks/<taskId>" \
+curl -X DELETE "https://tm.noah-frank.de/api/tasks/<taskId>" \
   -H "Authorization: Bearer your.jwt.token"
 ```
 
 ```python
 import requests
 
-response = requests.delete("https://api.tm.noah-frank.de/tasks/<taskId>", headers={
+response = requests.delete("https://tm.noah-frank.de/api/tasks/<taskId>", headers={
     "Authorization": "Bearer your.jwt.token"
 })
 result = response.json()
@@ -512,7 +536,8 @@ result = response.json()
 
 ### HTTP Request
 
-`DELETE https://api.tm.noah-frank.de/tasks/<taskId>`
+`DELETE https://tm.noah-frank.de/api/tasks/<taskId>`
+
 ```
 
 ### Responses
@@ -522,3 +547,4 @@ result = response.json()
 | 200    | Task successfully deleted |
 | 404    | Task not found            |
 | 500    | Internal server error     |
+```
