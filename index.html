@@ -369,7 +369,7 @@
 <p>Welcome to the Taskmaster REST API. This API allows you to manage tasks and handle user authentication.</p>
 
 <p>All responses are in JSON format.<br>
-Base URL: <code>https://api.tm.noah-frank.de/</code></p>
+Base URL: <code>https://tm.noah-frank.de/api/</code></p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>ℹ️ <strong>Header vs. Cookie – Which one should I use?</strong><br>
@@ -389,7 +389,7 @@ Authorization: Bearer your.jwt.token
 <li><strong>HTTP Cookie</strong>:<br>
 If the <code>Authorization</code> header is missing, the API will also check for a <code>jwt</code> cookie.</li>
 </ul>
-<h1 id='user'>User</h1><h2 id='register-a-new-user'>Register A New User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://api.tm.noah-frank.de/auth/register"</span> <span class="se">\</span>
+<h1 id='user'>User</h1><h2 id='register-a-new-user'>Register A New User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://tm.noah-frank.de/api/auth/register"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{
     "username": "user123",
@@ -397,13 +397,13 @@ If the <code>Authorization</code> header is missing, the API will also check for
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/auth/register</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://tm.noah-frank.de/api/auth/register</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">user123</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">securepassword</span><span class="dl">"</span><span class="p">,</span>
 <span class="p">});</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">"https://api.tm.noah-frank.de/auth/register"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">"https://tm.noah-frank.de/api/auth/register"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
   <span class="s">"username"</span><span class="p">:</span> <span class="s">"user123"</span><span class="p">,</span>
   <span class="s">"password"</span><span class="p">:</span> <span class="s">"securepassword"</span>
 <span class="p">})</span>
@@ -420,7 +420,7 @@ If the <code>Authorization</code> header is missing, the API will also check for
 <p>This endpoint registers a new user.<br>
 It also creates default tasks and logs the user in automatically.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.tm.noah-frank.de/auth/register</code></p>
+<p><code>POST https://tm.noah-frank.de/api/auth/register</code></p>
 <h3 id='request-body'>Request Body</h3>
 <table><thead>
 <tr>
@@ -463,7 +463,7 @@ It also creates default tasks and logs the user in automatically.</p>
 <td>Internal server error</td>
 </tr>
 </tbody></table>
-<h2 id='log-in-a-user'>Log In A User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://api.tm.noah-frank.de/auth/login"</span> <span class="se">\</span>
+<h2 id='log-in-a-user'>Log In A User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://tm.noah-frank.de/api/auth/login"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{
     "username": "user123",
@@ -471,13 +471,13 @@ It also creates default tasks and logs the user in automatically.</p>
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/auth/login</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://tm.noah-frank.de/api/auth/login</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">user123</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">securepassword</span><span class="dl">"</span><span class="p">,</span>
 <span class="p">});</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">"https://api.tm.noah-frank.de/auth/login"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">"https://tm.noah-frank.de/api/auth/login"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
   <span class="s">"username"</span><span class="p">:</span> <span class="s">"user123"</span><span class="p">,</span>
   <span class="s">"password"</span><span class="p">:</span> <span class="s">"securepassword"</span>
 <span class="p">})</span>
@@ -495,7 +495,7 @@ It also creates default tasks and logs the user in automatically.</p>
 <p>This endpoint logs in a user using username and password.<br>
 Returns a JWT token and redirect URL.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST https://api.tm.noah-frank.de/auth/login</code></p>
+<p><code>POST https://tm.noah-frank.de/api/auth/login</code></p>
 <h3 id='request-body-2'>Request Body</h3>
 <table><thead>
 <tr>
@@ -547,18 +547,20 @@ Returns a JWT token and redirect URL.</p>
 Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code>jwt</code> cookie.</p>
 <h2 id='get-all-tasks'>Get All Tasks</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.tm.noah-frank.de/tasks"</span> <span class="se">\</span>
+<span class="nx">axios</span>
+  <span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://tm.noah-frank.de/api/tasks</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://tm.noah-frank.de/api/tasks"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your.jwt.token"</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"https://api.tm.noah-frank.de/tasks"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"https://tm.noah-frank.de/api/tasks"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
     <span class="s">"Authorization"</span><span class="p">:</span> <span class="s">"Bearer your.jwt.token"</span>
 <span class="p">})</span>
 <span class="n">tasks</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
@@ -578,7 +580,7 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div><h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET https://api.tm.noah-frank.de/tasks</code></p>
+<p><code>GET https://tm.noah-frank.de/api/tasks</code></p>
 <h3 id='responses-3'>Responses</h3>
 <table><thead>
 <tr>
@@ -597,18 +599,20 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 </tbody></table>
 <h2 id='get-a-task-by-id'>Get a Task by ID</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;"</span> <span class="se">\</span>
+<span class="nx">axios</span>
+  <span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your.jwt.token"</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
     <span class="s">"Authorization"</span><span class="p">:</span> <span class="s">"Bearer your.jwt.token"</span>
 <span class="p">})</span>
 <span class="n">task</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
@@ -626,7 +630,7 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
   </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"456"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</code></p>
+<p><code>GET https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;</code></p>
 <h3 id='responses-4'>Responses</h3>
 <table><thead>
 <tr>
@@ -649,19 +653,25 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 </tbody></table>
 <h2 id='create-a-new-task'>Create a New Task</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">New Task</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">description</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Optional text</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">dueDate</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2024-12-31</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">priority</span><span class="p">:</span> <span class="dl">"</span><span class="s2">High</span><span class="dl">"</span>
-<span class="p">},</span> <span class="p">{</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://api.tm.noah-frank.de/tasks"</span> <span class="se">\</span>
+<span class="nx">axios</span>
+  <span class="p">.</span><span class="nx">post</span><span class="p">(</span>
+    <span class="dl">"</span><span class="s2">https://tm.noah-frank.de/api/tasks</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">New Task</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">description</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Optional text</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">dueDate</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2024-12-31</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">priority</span><span class="p">:</span> <span class="dl">"</span><span class="s2">High</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://tm.noah-frank.de/api/tasks"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your.jwt.token"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{
@@ -672,7 +682,7 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">"https://api.tm.noah-frank.de/tasks"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">"https://tm.noah-frank.de/api/tasks"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
     <span class="s">"title"</span><span class="p">:</span> <span class="s">"New Task"</span><span class="p">,</span>
     <span class="s">"description"</span><span class="p">:</span> <span class="s">"Optional text"</span><span class="p">,</span>
     <span class="s">"dueDate"</span><span class="p">:</span> <span class="s">"2024-12-31"</span><span class="p">,</span>
@@ -695,7 +705,7 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
   </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"456"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-5'>HTTP Request</h3>
-<p><code>POST https://api.tm.noah-frank.de/tasks</code></p>
+<p><code>POST https://tm.noah-frank.de/api/tasks</code></p>
 <h3 id='request-body-3'>Request Body</h3>
 <table><thead>
 <tr>
@@ -768,17 +778,23 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 </tbody></table>
 <h2 id='update-a-task'>Update a Task</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Updated Task</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">completed</span><span class="p">:</span> <span class="kc">true</span>
-<span class="p">},</span> <span class="p">{</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="s2">"https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;"</span> <span class="se">\</span>
+<span class="nx">axios</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span>
+    <span class="dl">"</span><span class="s2">https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Updated Task</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">completed</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="s2">"https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your.jwt.token"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{
@@ -787,7 +803,7 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="s">"https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="s">"https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
     <span class="s">"title"</span><span class="p">:</span> <span class="s">"Updated Task"</span><span class="p">,</span>
     <span class="s">"completed"</span><span class="p">:</span> <span class="bp">True</span>
 <span class="p">},</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
@@ -795,7 +811,7 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 <span class="p">})</span>
 <span class="n">updated_task</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div><h3 id='http-request-6'>HTTP Request</h3>
-<p><code>PUT https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</code></p>
+<p><code>PUT https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;</code></p>
 <h3 id='responses-6'>Responses</h3>
 <table><thead>
 <tr>
@@ -818,18 +834,24 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 </tbody></table>
 <h2 id='toggle-task-completion'>Toggle Task Completion</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;/toggle</span><span class="dl">"</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;/toggle"</span> <span class="se">\</span>
+<span class="nx">axios</span>
+  <span class="p">.</span><span class="nx">patch</span><span class="p">(</span>
+    <span class="dl">"</span><span class="s2">https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;/toggle</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">{},</span>
+    <span class="p">{</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;/toggle"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your.jwt.token"</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">patch</span><span class="p">(</span><span class="s">"https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;/toggle"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">patch</span><span class="p">(</span><span class="s">"https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;/toggle"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
     <span class="s">"Authorization"</span><span class="p">:</span> <span class="s">"Bearer your.jwt.token"</span>
 <span class="p">})</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
@@ -846,7 +868,7 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-7'>HTTP Request</h3>
-<p><code>PATCH https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;/toggle</code></p>
+<p><code>PATCH https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;/toggle</code></p>
 <h3 id='responses-7'>Responses</h3>
 <table><thead>
 <tr>
@@ -873,18 +895,20 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
 </tbody></table>
 <h2 id='delete-a-task'>Delete a Task</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s2">"https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;"</span> <span class="se">\</span>
+<span class="nx">axios</span>
+  <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer your.jwt.token</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s2">"https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your.jwt.token"</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
     <span class="s">"Authorization"</span><span class="p">:</span> <span class="s">"Bearer your.jwt.token"</span>
 <span class="p">})</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
@@ -897,29 +921,16 @@ Use the <code>Authorization: Bearer &lt;token&gt;</code> header or a valid <code
   </span><span class="nl">"taskId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-8'>HTTP Request</h3>
-<p><code>DELETE https://api.tm.noah-frank.de/tasks/&lt;taskId&gt;</code>
-```</p>
-<h3 id='responses-8'>Responses</h3>
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>Task successfully deleted</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Task not found</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal server error</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
+<p><code>DELETE https://tm.noah-frank.de/api/tasks/&lt;taskId&gt;</code></p>
+<div class="highlight"><pre class="highlight plaintext"><code>
+### Responses
+
+| Status | Description               |
+|--------|---------------------------|
+| 200    | Task successfully deleted |
+| 404    | Task not found            |
+| 500    | Internal server error     |
+</code></pre></div><h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
